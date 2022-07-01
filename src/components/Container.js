@@ -8,7 +8,7 @@ function Container ({data}){
     let cardsToDisplay=data;
 
     return(
-        <div >
+        <div class="ui grid container">
             {cardsToDisplay.map(
                 (index)=>{
                     return(<Tile 
