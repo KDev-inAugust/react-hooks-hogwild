@@ -3,12 +3,11 @@ import Tile from "./Tile"
 
 
 function Container ({data}){
-    console.log(data);
-
+   
     let cardsToDisplay=data;
 
     return(
-        <div class="ui grid container">
+        <div >
             {cardsToDisplay.map(
                 (index)=>{
                     return(<Tile 
