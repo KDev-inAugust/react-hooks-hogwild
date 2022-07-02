@@ -1,13 +1,15 @@
-import React from "react"
+import React, {useState} from "react"
 import Tile from "./Tile"
 
 
 function Container ({data}){
-   
+    let [classState, setClassState] = useState("hide")
     let cardsToDisplay=data;
 
+    
+
     return(
-        <div >
+        <div>
             {cardsToDisplay.map(
                 (index)=>{
                     return(<Tile 

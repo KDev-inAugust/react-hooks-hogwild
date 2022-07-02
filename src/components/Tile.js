@@ -2,19 +2,27 @@ import React from "react";
 
 function Tile ({name, image, specialty, weight, greased, hma}){
     
+
+    function handleTileClick(e){
+        let target = e.currentTarget.children
+        let targetArr = [target[2], target[3], target[4], target[5]]
+        for (let index of targetArr){
+            index.className==="hide" ? index.className="show" : index.className="hide"
+        }
+     }
 return (
-    
-        <div class="pigTile">
-           <h1>{name} </h1> 
+        <div class="pigTile" onClick={handleTileClick}>
+            <h1>{name} </h1> 
             <img src={image}></img>
-            <h3>specialty: {specialty}</h3>
-            <h3>weight: {weight}</h3>
-            <h3>greased: {greased===true ? "true" : "false"}</h3>
-            <h3>highest medal awarded: {hma}</h3>
-        </div>
+            <h3 class="hide">specialty: {specialty}</h3>
+            <h3 class="hide">weight: {weight}</h3>
+            <h3 class="hide">greased: {greased===true ? "true" : "false"}</h3>
+            <h3 class="hide">highest medal awarded: {hma}</h3>
+        </div>   
       
-            
 )
 }
 
 export default Tile
+
+// target[2].className="show"
