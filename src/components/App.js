@@ -7,29 +7,43 @@ import hogs from "../porkers_data";
 
 function App() {
 	const [filterState, setFilterState] = useState("All")
-	const [sortState, setSortState] = useState("All")
 	const [dataState, setDataState] = useState(hogs)
+
+
+
+
+	//----------filter function
+
 
 	function handleFilter (e){
 		setFilterState(e.target.value)
-		console.log(e.target.value)
+		console.log(e.target.value);
+		console.log(dataState);
+		
+	
+		switch (e.target.value){
+			case 'greased' : {setDataState(dataState.filter(index=>index.greased===true))};
+			break;
+			case 'notGreased' : {setDataState(dataState.filter(index=>index.greased===false))}
+			break;
+			default: {setDataState(hogs)}
+		}
 	}
 
-	//------------in order to sort by name or weight we can arrange the data in this component before it is passed on for processing in teh container app. the data prop will be passed a variable that is pre-sorted. for name and weight try using the .sort method.
+//-------sort function
 	function handleSort (e){
-		setSortState(e.target.value);
-		console.log(e.target.value);
 		let nameArr=[];
 		let weightArr=[];
 		
-	//---------make an if/then or ternary for how to assign sort state
+	//---------populate name array
 	for (let index in hogs)
 	{nameArr.push(hogs[index].name)}
 		nameArr.sort();
-		console.log(nameArr)
 
-	//-------data object is rebuilt to be passed on for rendering
+
+	//-------name data object is rebuilt to be passed on for rendering
 	let nameObjs = []
+
 	for (let index of nameArr){
 		for (let hogsIndex in hogs){
 			if (index === hogs[hogsIndex].name){
@@ -38,10 +52,35 @@ function App() {
 		}
 	}
 
-	console.log(nameObjs)
-	if (sortState==='byName'){
-		setDataState(nameObjs)
-	}	
+	//--------populate weight array
+
+	for (let index in hogs)
+		{weightArr.push(hogs[index].weight)}
+		weightArr.sort();
+		
+
+	//--------weight data object is rebuilt to be passed on for rendering
+	let weightObjs = []
+
+	for (let index of weightArr){
+		for (let hogsIndex in hogs){
+			if (index === hogs[hogsIndex].weight){
+				weightObjs.push(hogs[hogsIndex])
+			}
+		}
+	}
+	console.log(weightArr)
+	console.log(weightObjs)
+
+	switch (e.target.value){
+		case 'byName' : {setDataState(nameObjs)};
+		break;
+		case 'byWeight' : {setDataState(weightObjs)}
+		break;
+		default: {setDataState(hogs)}
+	}
+		
+	
 	}
 
 	return (
@@ -54,5 +93,3 @@ function App() {
 }
 
 export default App;
-
-
