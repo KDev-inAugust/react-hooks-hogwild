@@ -11,13 +11,13 @@ function Tile ({name, image, specialty, weight, greased, hma}){
         }
      }
 return (
-        <div class="pigTile" onClick={handleTileClick}>
+        <div className="pigTile" onClick={handleTileClick}>
             <h1>{name} </h1> 
             <img src={image}></img>
-            <h3 class="hide">specialty: {specialty}</h3>
-            <h3 class="hide">weight: {weight}</h3>
-            <h3 class="hide">greased: {greased===true ? "true" : "false"}</h3>
-            <h3 class="hide">highest medal awarded: {hma}</h3>
+            <h3 className="hide">specialty: {specialty}</h3>
+            <h3 className="hide">weight: {weight}</h3>
+            <h3 className="hide">greased: {greased===true ? "true" : "false"}</h3>
+            <h3 className="hide">highest medal awarded: {hma}</h3>
         </div>   
       
 )

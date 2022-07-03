@@ -1,18 +1,18 @@
 import React, {useState} from "react"
 import Tile from "./Tile"
+import { v4 as uuid } from "uuid";
 
 
 function Container ({data}){
-    let [classState, setClassState] = useState("hide")
-    let cardsToDisplay=data;
-
     
+    let cardsToDisplay=data;
 
     return(
         <div>
             {cardsToDisplay.map(
                 (index)=>{
                     return(<Tile 
+                        key={uuid()}
                         name={index.name} 
                         image={index.image} 
                         specialty={index.specialty}
