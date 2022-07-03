@@ -8,6 +8,7 @@ import hogs from "../porkers_data";
 function App() {
 	const [filterState, setFilterState] = useState("All")
 	const [sortState, setSortState] = useState("All")
+	const [dataState, setDataState] = useState(hogs)
 
 	function handleFilter (e){
 		setFilterState(e.target.value)
@@ -22,37 +23,32 @@ function App() {
 		let weightArr=[];
 		
 	//---------make an if/then or ternary for how to assign sort state
-		
-		for (let index in hogs)
+	for (let index in hogs)
 	{nameArr.push(hogs[index].name)}
 		nameArr.sort();
 		console.log(nameArr)
 
 	//-------data object is rebuilt to be passed on for rendering
-
+	let nameObjs = []
 	for (let index of nameArr){
 		for (let hogsIndex in hogs){
 			if (index === hogs[hogsIndex].name){
-				console.log(hogs[hogsIndex])
+				nameObjs.push(hogs[hogsIndex])
 			}
 		}
 	}
-		
+
+	console.log(nameObjs)
+	if (sortState==='byName'){
+		setDataState(nameObjs)
+	}	
 	}
-
-	
-
-		
-
-
-
-	
 
 	return (
 		<div className="App">
 			<Nav />
 			<SortAndSearch handleFilter={handleFilter} handleSort={handleSort}/>
-			<Container data={hogs}/>
+			<Container data={dataState}/>
 		</div>
 	);
 }
